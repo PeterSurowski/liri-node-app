@@ -6,11 +6,12 @@ switch (commands) {
 	case 'my-tweets':
 		twitter();
 		break;
+	case 'spotify-this-song':
+		spotify();
+		break;
 }
 
 function twitter() {
-	console.log('Twitter function has been fired.')
-	console.log(process.env.TWITTER_ACCESS_TOKEN_KEY)
 	var Twitter = require('twitter');
 	var client = new Twitter ({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -38,4 +39,24 @@ function twitter() {
 	});
 }
 
-//I made it to step 8, substep 1 and I can't figure out how to make an ajax call to the Twitter API.
+function spotify() {
+	var Spotify = require('node-spotify-api');
+	var songTitle = process.argv[3];
+	var spotify = new Spotify ({
+		id: process.env.SPOTIFY_ID,
+		secret: process.env.SPOTIFY_SECRET
+	});
+	spotify.search({ type: 'track', query: songTitle, limit: 5}, function(err, data) {
+		if (err) {
+			return console.log('Error occurred: ' + err);
+		} else {
+			console.log('-------------');
+			console.log('Artist: ' + data.tracks.items[0].artists[0].name);
+			console.log('Song name: ' + data.tracks.items[0].name);
+			console.log('Preview Link: ' + data.tracks.items[0].url);
+			console.log('Album: ' + data.tracks.items[0].album.name);
+			console.log('--------------');
+		}
+
+	});
+}
