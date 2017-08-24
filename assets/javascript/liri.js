@@ -8,8 +8,9 @@ switch (commands) {
 		break;
 }
 
-
 function twitter() {
+	console.log('Twitter function has been fired.')
+	console.log(process.env.TWITTER_ACCESS_TOKEN_KEY)
 	var Twitter = require('twitter');
 	var client = new Twitter ({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -25,17 +26,14 @@ function twitter() {
 
 	client.get('statuses/user_timeline', params, function(err, tweets, response) {
 		if(!err) {
-			console.log(tweets)
-			
-			
-			/*console.log('-------------');
+			console.log('-------------');
 			console.log('Most recent Tweets: ')
 			console.log('--------------')
 			for (i = 0; i < tweets.length; i++) {
 				console.log('RoboZombieNinja: ' + tweets[i].text);
 				console.log('Tweet Date: ' + tweets[i].created_at);
 				console.log('--------------')
-			}*/
+			}
 		}
 	});
 }

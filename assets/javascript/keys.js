@@ -1,5 +1,5 @@
 
-console.log('this is loaded');
+console.log('This is loaded');
 
 exports.twitterKeys = {
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -8,4 +8,4 @@ exports.twitterKeys = {
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 }
 
-console.log('My Twitter ID is: ' + process.env.TWITTER_CONSUMER_KEY)
+

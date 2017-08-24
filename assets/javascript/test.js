@@ -1,0 +1,1 @@
+console.log('My Twitter consumer secret is: ' + process.env.TWITTER_CONSUMER_SECRET)
