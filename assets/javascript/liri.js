@@ -9,7 +9,12 @@ switch (commands) {
 	case 'spotify-this-song':
 		spotify();
 		break;
+	case 'movie-this':
+		omdb();
+		break;
 }
+
+//-------- TWITTER   --------------
 
 function twitter() {
 	var Twitter = require('twitter');
@@ -39,6 +44,8 @@ function twitter() {
 	});
 }
 
+//-------- SPOTIFY   --------------
+
 function spotify() {
 	var Spotify = require('node-spotify-api');
 	var songTitle = process.argv[3];
@@ -59,4 +66,20 @@ function spotify() {
 		}
 
 	});
+}
+
+//--------  OMDB  --------------
+
+function omdb() {
+	var movieTitle = process.argv[3];
+	var queryURL = "http://www.omdbapi.com/?t=" + movieTitle + "&y=&plot=short&apikey=40e9cece";	
+	var request = require('request');
+	request(queryURL, function(err, response, body) {
+		if (err) {
+			console.log(err);
+		}
+		if (!err) {
+			console.log(body)
+		}		
+	})
 }
