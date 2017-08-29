@@ -79,7 +79,14 @@ function omdb() {
 			console.log(err);
 		}
 		if (!err) {
-			console.log(body)
+			console.log('Title: ' + JSON.parse(body).Title)
+			console.log('Year released: ' + JSON.parse(body).Year)
+			console.log('IMDb rating: ' + JSON.parse(body).imdbRating)
+			console.log('Rotten Tomatoes rating: ' + JSON.parse(body).Ratings[0].Value)
+			console.log('Filmed in: ' + JSON.parse(body).Country)
+			console.log('Filmed in: ' + JSON.parse(body).Language)
+			console.log('Filmed in: ' + JSON.parse(body).Plot)
+			console.log('Filmed in: ' + JSON.parse(body).Actors)
 		}		
 	})
 }
