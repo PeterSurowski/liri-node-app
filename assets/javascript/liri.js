@@ -1,4 +1,4 @@
-var keys = require('./keys');
+
 var fs = require('fs');
 var commands = process.argv[2];
 
@@ -82,7 +82,7 @@ function omdb() {
 			console.log('Title: ' + JSON.parse(body).Title)
 			console.log('Year released: ' + JSON.parse(body).Year)
 			console.log('IMDb rating: ' + JSON.parse(body).imdbRating)
-			console.log('Rotten Tomatoes rating: ' + JSON.parse(body).Ratings[0].Value)
+			console.log('Rotten Tomatoes rating: ' + JSON.parse(body).Ratings[1].Value)
 			console.log('Filmed in: ' + JSON.parse(body).Country)
 			console.log('Filmed in: ' + JSON.parse(body).Language)
 			console.log('Filmed in: ' + JSON.parse(body).Plot)
@@ -90,3 +90,24 @@ function omdb() {
 		}		
 	})
 }
+
+//---------- random ------------------
+function random() {
+	fs.readFile("../../random.txt", "utf8", function(err, data) {
+		if (err) {
+			return console.log(err);
+		}
+
+		data = data.split(", ");
+		var result = 0;
+
+		for (var i = 0; i < data.length; i++) {
+			if(data[i]) {
+				result = data[i];
+			}
+		}
+		
+		console.log(result);
+	})
+};
+random();
